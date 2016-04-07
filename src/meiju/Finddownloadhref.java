@@ -1,0 +1,105 @@
+package meiju;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.BufferedWriter;
+import java.io.File;  
+import java.io.FileInputStream;  
+import java.io.FileNotFoundException;  
+import java.io.FileOutputStream;  
+import java.io.FileWriter;
+import java.io.IOException;  
+import java.io.InputStreamReader;  
+
+//自定义类
+import meiju.DownloadTime;
+import meiju.Searchtvseries;
+import meiju.Writetofile;
+
+public class Finddownloadhref {
+    private final WebDriver webDriver;
+    private final WebDriverWait wait;
+    private JavascriptExecutor js;
+    //美剧名
+    private WebElement tvName;
+    //下载地址
+    private List<WebElement> listElement;
+	//= dr.findElements(By.xpath("//*[@id='jishu']/div/ul/li"));
+	//集数
+    private List<WebElement> listElement1; 
+	//= dr.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/span"));
+    //下载链接
+    private List<WebElement> listElement2;
+	//= dr.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/input"));
+	
+    public Finddownloadhref(WebDriver webDriver){
+    	this.webDriver = webDriver;
+    	this.wait = new WebDriverWait(webDriver, 100);;
+    }
+    
+	public List<String> listdownloadhrefsearch(List<String> listTVHref) throws InterruptedException {
+    	List<String> listHref = new ArrayList<String>();
+    	/*
+    	webDriver.get(url);
+        WebElement webElementKeyword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("keyword")));
+ 
+        if (webElementKeyword != null) {
+            System.out.print(webElementKeyword.getText());
+        }
+        */
+    	
+    	Writetofile writeToFile = new Writetofile();
+    	
+		for(String list : listTVHref)
+		{
+			webDriver.get(list);
+			//美剧名
+			tvName = webDriver.findElement(By.xpath("//*[@id='redu']/h1"));
+			
+			System.out.println(tvName.getText());
+			
+			String fileName = tvName.getText()+".txt";
+			
+			listElement = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li"));
+			
+			listElement1 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/span"));
+		
+			listElement2 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/input"));
+			
+			//向文件写本次抓取启动时间
+			String time = new DownloadTime().Time();
+			writeToFile.appendMethod(fileName, time);
+			
+			String beginToEnd = listElement1.get(0).getText().toString() + "-" + listElement1.get(listElement.size()-1).getText().toString();
+			writeToFile.appendMethod(fileName,beginToEnd);
+			for (int i = 0; i < listElement.size(); i++)
+			{
+				System.out.println(listElement1.get(i).getText());
+				System.out.println(listElement2.get(i).getAttribute("value"));
+				
+				String downloadHref = listElement2.get(i).getAttribute("value").toString();
+				
+				writeToFile.appendMethod(fileName,downloadHref);
+			}
+		}
+		
+		for(String list : listHref)
+		{
+			System.out.println(list);
+		}
+		
+		//webDriver.quit();
+		
+		return listHref;
+    }
+    
+}
