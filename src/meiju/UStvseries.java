@@ -18,8 +18,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UStvseries {
 	
-	
-	
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 
@@ -47,9 +45,11 @@ public class UStvseries {
 		
 		finddownloadhref.listdownloadhrefsearch(listHref);
 		
-		
-		
 		System.out.println("结束");
+		
+		webDriver.quit();
+		
+		
 	}
 
 }
