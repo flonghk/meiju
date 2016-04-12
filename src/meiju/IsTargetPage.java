@@ -35,9 +35,12 @@ public class IsTargetPage {
     	Set<String> allWindowsId = webDriver.getWindowHandles();
     	for(String windowId : allWindowsId)
     	{
-    		if(webDriver.switchTo().window(windowId).getTitle().contains("<目标查找窗口Tilte的某段字符串>"))
+    		if(!webDriver.switchTo().window(windowId).getTitle().contains("美剧天堂"))
     		{
-    			webDriver.switchTo().window(windowId).getTitle().contains("<目标查找窗口Tilte的某段字符串>");
+    			System.out.println(webDriver.getTitle());
+    			webDriver.close();
+    			System.out.println("关闭无关的页面");
+    			webDriver.switchTo().window(parentWindowId);
     		break;
     		}
 

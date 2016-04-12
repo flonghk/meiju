@@ -11,19 +11,7 @@ import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.BufferedWriter;
-import java.io.File;  
-import java.io.FileInputStream;  
-import java.io.FileNotFoundException;  
-import java.io.FileOutputStream;  
-import java.io.FileWriter;
-import java.io.IOException;  
-import java.io.InputStreamReader;  
-
-import java.util.Date;
-import java.util.Calendar; 
-import java.text.SimpleDateFormat;
-
+import meiju.IsTargetPage;
 
 public class Searchtvseries {
     private final WebDriver webDriver;
@@ -57,6 +45,8 @@ public class Searchtvseries {
 		{
 			webElementKeyword = webDriver.findElement(By.id("keyword"));
 			webElementKeyword.sendKeys(list);
+			IsTargetPage isTargetPage = new IsTargetPage(webDriver);
+			isTargetPage.IsTarget();
 			webElementBtn = webDriver.findElement(By.id("keyword_bnt"));
 			webElementBtn.click();
 			Thread.sleep(1000);
