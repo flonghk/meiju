@@ -25,7 +25,7 @@ public class Searchtvseries {
 
     public Searchtvseries(WebDriver webDriver) {
         this.webDriver = webDriver;
-        this.wait = new WebDriverWait(webDriver, 100);
+        this.wait = new WebDriverWait(webDriver, 1000);
         this.js = (JavascriptExecutor) webDriver;
     }
     
