@@ -24,11 +24,15 @@ import java.io.InputStreamReader;
 import meiju.DownloadTime;
 import meiju.Searchtvseries;
 import meiju.Writetofile;
+import meiju.Readfromfile;
 
 public class Finddownloadhref {
     private final WebDriver webDriver;
     private final WebDriverWait wait;
     private JavascriptExecutor js;
+    
+    Writetofile writeToFile;
+    Readfromfile readfromfile;
     //美剧名
     private WebElement tvName;
     //下载地址
@@ -57,8 +61,8 @@ public class Finddownloadhref {
         }
         */
     	
-    	Writetofile writeToFile = new Writetofile();
-    	
+    	writeToFile = new Writetofile();
+    	readfromfile = new Readfromfile();
 		for(String list : listTVHref)
 		{
 			webDriver.get(list);
@@ -74,7 +78,7 @@ public class Finddownloadhref {
 			listElement1 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/span"));
 		
 			listElement2 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/input"));
-			
+			/*
 			//向文件写本次抓取启动时间
 			String time = new DownloadTime().Time();
 			writeToFile.appendMethod(fileName, time);
@@ -89,6 +93,24 @@ public class Finddownloadhref {
 				String downloadHref = listElement2.get(i).getAttribute("value").toString();
 				
 				writeToFile.appendMethod(fileName,downloadHref);
+			}
+			*/
+			
+			//获取txt中最后一行
+			String hrefFromTxt = readfromfile.readRocords(fileName);
+			//集数
+			int Num = 0;
+			for (int i = 0; i < listElement.size(); i++)
+			{
+				String downloadHref = listElement2.get(i).getAttribute("value").toString();
+				if(downloadHref.equals(hrefFromTxt) && i<listElement.size()-1)
+				{
+					Num = i;
+				}
+				else
+				{
+					System.out.println("本次无更新");
+				}
 			}
 		}
 		

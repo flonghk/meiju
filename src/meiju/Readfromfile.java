@@ -8,18 +8,24 @@ import java.util.List;
 
 public class Readfromfile {
 	
-	public String readRocords(String... filenames) {
+	public String readRocords(String filename) {
         List<String> transaction = null;
-        if (filenames.length > 0) {
+        if (filename.length() > 0) 
+        {
             transaction = new LinkedList<String>();
-            for (String filename : filenames) {
-                try {
+            //for (String filename : filenames) 
+            //{
+                try 
+                {
                     FileReader fr = new FileReader(filename);
                     BufferedReader br = new BufferedReader(fr);
-                    try {
+                    try 
+                    {
                         String line;
-                        while ((line = br.readLine()) != null) {
-                            if(line.trim().length()>0){
+                        while ((line = br.readLine()) != null) 
+                        {
+                            if(line.trim().length()>0)
+                            {
                                 transaction.add(line);
                             }
                         }
@@ -31,7 +37,7 @@ public class Readfromfile {
                             + ex.getMessage());
                     System.exit(1);
                 }
-            }
+            //}
         }
         
         return transaction.get(transaction.size()-1);
