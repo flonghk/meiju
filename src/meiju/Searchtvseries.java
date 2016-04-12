@@ -35,7 +35,7 @@ public class Searchtvseries {
     	List<String> listHref = new ArrayList<String>();
     	
     	webDriver.get(url);
-        WebElement webElementKeyword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("keyword")));
+        webElementKeyword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("keyword")));
  
         if (webElementKeyword != null) {
             System.out.print(webElementKeyword.getText());
