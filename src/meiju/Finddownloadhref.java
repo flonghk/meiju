@@ -87,6 +87,7 @@ public class Finddownloadhref {
 			// 获取txt中最后一行
 			String hrefFromTxt = readfromfile.readRocords(fileName);
 			System.out.println(hrefFromTxt);
+			System.out.println(hrefFromTxt.length());
 			if (hrefFromTxt.length() > 0 && hrefFromTxt != null) {
 				// 下载链接
 				List<String> listWriteHref = new ArrayList<String>();
