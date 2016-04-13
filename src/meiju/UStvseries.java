@@ -23,14 +23,15 @@ public class UStvseries {
 
 		List<String> listTVName = new ArrayList<String>();
 		
-		listTVName.add("生活大爆炸第九季");
+		//listTVName.add("生活大爆炸第九季");
 		listTVName.add("天蝎第二季");
-		listTVName.add("海军罪案调查处第十三季");
+		//listTVName.add("海军罪案调查处第十三季");
 		listTVName.add("谍网第一季");
-		listTVName.add("犯罪现场调查：网络第二季");
-		listTVName.add("犯罪现场调查：网络第一季");
-		listTVName.add("灵书妙探第八季");
-		listTVName.add("福尔摩斯：基本演绎法第四季");
+		//listTVName.add("犯罪现场调查：网络第二季");
+		//listTVName.add("犯罪现场调查：网络第一季");
+		//listTVName.add("灵书妙探第八季");
+		//listTVName.add("福尔摩斯：基本演绎法第四季");
+		listTVName.add("尖峰时刻第一季");
 		
 		String chromedriverPath = new GetCurrentPath().getCurrentPath();
 		System.setProperty("webdriver.chrome.driver", chromedriverPath + "/\\chromedriver.exe");
