@@ -29,7 +29,7 @@ public class IsTargetPage {
     	//this.wait = new WebDriverWait(webDriver, 100);;
     }
     
-    public void IsTarget()
+    public void IsTarget() throws InterruptedException
     {
     	String parentWindowId = webDriver.getWindowHandle();
     	Set<String> allWindowsId = webDriver.getWindowHandles();
@@ -40,10 +40,13 @@ public class IsTargetPage {
     			System.out.println(webDriver.getTitle());
     			webDriver.close();
     			System.out.println("关闭无关的页面");
+    			Thread.sleep(1000);
     			webDriver.switchTo().window(parentWindowId);
     		break;
     		}
 
     	}
+    	
+    	Thread.sleep(1000);
     }
 }

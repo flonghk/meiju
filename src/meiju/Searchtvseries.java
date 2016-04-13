@@ -47,6 +47,7 @@ public class Searchtvseries {
 			webElementKeyword.sendKeys(list);
 			IsTargetPage isTargetPage = new IsTargetPage(webDriver);
 			isTargetPage.IsTarget();
+			Thread.sleep(1000);
 			webElementBtn = webDriver.findElement(By.id("keyword_bnt"));
 			webElementBtn.click();
 			Thread.sleep(1000);
