@@ -87,7 +87,8 @@ public class Finddownloadhref {
 			// 获取txt中最后一行
 			String hrefFromTxt = readfromfile.readRocords(fileName);
 			System.out.println(hrefFromTxt);
-			System.out.println(hrefFromTxt.length());
+			//System.out.println(hrefFromTxt.length());
+			/*
 			if (hrefFromTxt.length() > 0 && hrefFromTxt != null) {
 				// 下载链接
 				List<String> listWriteHref = new ArrayList<String>();
@@ -136,8 +137,58 @@ public class Finddownloadhref {
 					writeToFile.appendMethod(fileName, downloadHref);
 				}
 			}
-		}
+			*/
+			if (hrefFromTxt.length() <= 0 || hrefFromTxt == null) {
+				
+				System.out.println("新的美剧");
+				// 向文件写本次抓取启动时间
+				String time = new DownloadTime().Time();
+				writeToFile.appendMethod(fileName, time);
 
+				String beginToEnd = listElement1.get(0).getText().toString() + "-"
+						+ listElement1.get(listElement.size() - 1).getText().toString();
+				writeToFile.appendMethod(fileName, beginToEnd);
+				for (int i = 0; i < listElement.size(); i++) {
+					System.out.println(listElement1.get(i).getText());
+					System.out.println(listElement2.get(i).getAttribute("value"));
+
+					String downloadHref = listElement2.get(i).getAttribute("value").toString();
+
+					writeToFile.appendMethod(fileName, downloadHref);
+				}
+			} else {
+				// 下载链接
+				List<String> listWriteHref = new ArrayList<String>();
+				// 集数
+				int Num = 0;
+				for (int i = 0; i < listElement.size(); i++) {
+					String downloadHref = listElement2.get(i).getAttribute("value").toString();
+					if (downloadHref.equals(hrefFromTxt)) {
+						Num = i - 1;
+						break;
+					}
+				}
+				System.out.println("Num:" + Num);
+				for (int i = Num; i < listElement.size(); i++) {
+					String downloadHref = listElement2.get(i).getAttribute("value").toString();
+					listWriteHref.add(downloadHref);
+				}
+				if (listWriteHref.size() > 0 && listElement.size() - listWriteHref.size() > 1) {
+					//System.out.println("listWriteHref.size() :" + listWriteHref.size());
+					// 向文件写本次抓取启动时间
+					String time = new DownloadTime().Time();
+					writeToFile.appendMethod(fileName, time);
+
+					String beginToEnd = listElement1.get(listElement.size() - listWriteHref.size()).getText().toString() + "-"
+							+ listElement1.get(listElement.size() - 1).getText().toString();
+					writeToFile.appendMethod(fileName, beginToEnd);
+
+					writeToFile.appendListMethod(fileName, (ArrayList<String>) listWriteHref);
+				}
+				System.out.println(fileName + "更新结束");
+			}
+		}
+	
 		// for(String list : listHref)
 		// {
 		// System.out.println(list);
