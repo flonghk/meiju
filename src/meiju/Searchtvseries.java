@@ -44,6 +44,7 @@ public class Searchtvseries {
 		for(String list : listTVName)
 		{
 			webElementKeyword = webDriver.findElement(By.id("keyword"));
+			webElementKeyword.clear();
 			webElementKeyword.sendKeys(list);
 			IsTargetPage isTargetPage = new IsTargetPage(webDriver);
 			isTargetPage.IsTarget();

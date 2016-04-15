@@ -113,7 +113,7 @@ public class Finddownloadhref {
 				for (int i = 0; i < listElement.size(); i++) {
 					String downloadHref = listElement2.get(i).getAttribute("value").toString();
 					if (downloadHref.equals(hrefFromTxt)) {
-						Num = i - 1;
+						Num = i + 1;
 						break;
 					}
 				}
