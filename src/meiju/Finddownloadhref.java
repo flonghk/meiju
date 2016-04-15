@@ -80,9 +80,8 @@ public class Finddownloadhref {
 			listElement1 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/span"));
 
 			listElement2 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/input"));
-			/*
 			
-			*/
+			System.out.println("listElement的长度：" + listElement.size());
 
 			// 获取txt中最后一行
 			String hrefFromTxt = readfromfile.readRocords(fileName);
@@ -138,7 +137,7 @@ public class Finddownloadhref {
 				}
 			}
 			*/
-			if (hrefFromTxt.length() <= 0 || hrefFromTxt == null) {
+			if (hrefFromTxt == null || hrefFromTxt.length() <= 0 ) {
 				
 				System.out.println("新的美剧");
 				// 向文件写本次抓取启动时间
