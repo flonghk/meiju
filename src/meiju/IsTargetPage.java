@@ -40,7 +40,7 @@ public class IsTargetPage {
     			System.out.println(webDriver.getTitle());
     			webDriver.close();
     			System.out.println("关闭无关的页面");
-    			Thread.sleep(1000);
+    			
     			webDriver.switchTo().window(parentWindowId);
     		break;
     		}

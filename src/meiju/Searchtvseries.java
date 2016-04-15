@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,8 +18,8 @@ public class Searchtvseries {
     private final WebDriver webDriver;
     private final WebDriverWait wait;
     private JavascriptExecutor js;
-    private final String url = "http://www.meijutt.com/";
-    
+    //private final String url = "http://www.meijutt.com/";
+    private final String url = "http://www.meijutt.com/search.asp";
     private WebElement webElementKeyword;
     private WebElement webElementBtn;
     //private WebElement webElementInput;
@@ -35,22 +36,32 @@ public class Searchtvseries {
     	List<String> listHref = new ArrayList<String>();
     	
     	webDriver.get(url);
+    	/*
         webElementKeyword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("keyword")));
  
         if (webElementKeyword != null) {
             System.out.print(webElementKeyword.getText());
         }
-        
+        */
 		for(String list : listTVName)
 		{
+			IsTargetPage isTargetPage = new IsTargetPage(webDriver);
 			webElementKeyword = webDriver.findElement(By.id("keyword"));
+			//new Actions(webDriver).moveToElement(webElementKeyword).perform();  
+			//((Object) webDriver).ExecuteScript("document.getElementById('elementHtmlId').click();");
 			webElementKeyword.clear();
 			webElementKeyword.sendKeys(list);
-			IsTargetPage isTargetPage = new IsTargetPage(webDriver);
+			//System.out.println(list);
 			isTargetPage.IsTarget();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
+			System.out.println("准备点击");
 			webElementBtn = webDriver.findElement(By.id("keyword_bnt"));
-			webElementBtn.click();
+			//webElementBtn.click();
+			
+			JavascriptExecutor executor = (JavascriptExecutor) webDriver;
+			executor.executeScript("arguments[0].click();", webElementBtn);
+			System.out.println("已点击");
+			isTargetPage.IsTarget();
 			Thread.sleep(1000);
         
 			listHref.add( webDriver.findElement(By.partialLinkText(list)).getAttribute("href"));
