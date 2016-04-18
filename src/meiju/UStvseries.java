@@ -20,7 +20,7 @@ public class UStvseries {
 	
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
-
+//https://github.com/flonghk/meiju.git
 		List<String> listTVName = new ArrayList<String>();
 		
 		listTVName.add("生活大爆炸第九季");
