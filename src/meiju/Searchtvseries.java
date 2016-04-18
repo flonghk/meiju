@@ -47,20 +47,17 @@ public class Searchtvseries {
 		{
 			IsTargetPage isTargetPage = new IsTargetPage(webDriver);
 			webElementKeyword = webDriver.findElement(By.id("keyword"));
-			//new Actions(webDriver).moveToElement(webElementKeyword).perform();  
-			//((Object) webDriver).ExecuteScript("document.getElementById('elementHtmlId').click();");
+
 			webElementKeyword.clear();
 			webElementKeyword.sendKeys(list);
 			//System.out.println(list);
 			isTargetPage.IsTarget();
-			//Thread.sleep(1000);
-			System.out.println("准备点击");
+
 			webElementBtn = webDriver.findElement(By.id("keyword_bnt"));
-			//webElementBtn.click();
 			
 			JavascriptExecutor executor = (JavascriptExecutor) webDriver;
 			executor.executeScript("arguments[0].click();", webElementBtn);
-			System.out.println("已点击");
+			//System.out.println("已点击");
 			isTargetPage.IsTarget();
 			Thread.sleep(1000);
         
