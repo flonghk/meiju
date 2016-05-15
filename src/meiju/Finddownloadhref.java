@@ -77,9 +77,11 @@ public class Finddownloadhref {
 
 			listElement = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li"));
 
-			listElement1 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/span"));
-
-			listElement2 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/input"));
+			//listElement1 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/div[1]/div/span"));
+			//获取下载链接
+			//2016-05-15 "//*[@id='jishu']/div/ul/li/div[1]/div/input"
+			//"//*[@id='jishu']/div/ul/li/p/strong/a"
+			listElement2 = webDriver.findElements(By.xpath("//*[@id='jishu']/div/ul/li/p/strong/a"));
 			
 			System.out.println("listElement的长度：" + listElement.size());
 
@@ -93,15 +95,15 @@ public class Finddownloadhref {
 				// 向文件写本次抓取启动时间
 				String time = new DownloadTime().Time();
 				writeToFile.appendMethod(fileName, time);
-
-				String beginToEnd = listElement1.get(0).getText().toString() + "-"
-						+ listElement1.get(listElement.size() - 1).getText().toString();
-				writeToFile.appendMethod(fileName, beginToEnd);
+				//String beginToEnd = 
+				//String beginToEnd = listElement1.get(0).getText().toString() + "-"
+				//		+ listElement1.get(listElement.size() - 1).getText().toString();
+				//writeToFile.appendMethod(fileName, beginToEnd);
 				for (int i = 0; i < listElement.size(); i++) {
-					System.out.println(listElement1.get(i).getText());
-					System.out.println(listElement2.get(i).getAttribute("value"));
+					//System.out.println(listElement1.get(i).getText());
+					System.out.println(listElement2.get(i).getAttribute("href"));
 
-					String downloadHref = listElement2.get(i).getAttribute("value").toString();
+					String downloadHref = listElement2.get(i).getAttribute("href").toString();
 
 					writeToFile.appendMethod(fileName, downloadHref);
 				}
@@ -111,7 +113,7 @@ public class Finddownloadhref {
 				// 集数
 				int Num = 0;
 				for (int i = 0; i < listElement.size(); i++) {
-					String downloadHref = listElement2.get(i).getAttribute("value").toString();
+					String downloadHref = listElement2.get(i).getAttribute("href").toString();
 					if (downloadHref.equals(hrefFromTxt)) {
 						Num = i + 1;
 						break;
@@ -119,7 +121,7 @@ public class Finddownloadhref {
 				}
 				System.out.println("Num:" + Num);
 				for (int i = Num; i < listElement.size(); i++) {
-					String downloadHref = listElement2.get(i).getAttribute("value").toString();
+					String downloadHref = listElement2.get(i).getAttribute("href").toString();
 					listWriteHref.add(downloadHref);
 				}
 				if (listWriteHref.size() > 0 && listElement.size() - listWriteHref.size() > 1) {
@@ -128,9 +130,9 @@ public class Finddownloadhref {
 					String time = new DownloadTime().Time();
 					writeToFile.appendMethod(fileName, time);
 
-					String beginToEnd = listElement1.get(listElement.size() - listWriteHref.size()).getText().toString() + "-"
-							+ listElement1.get(listElement.size() - 1).getText().toString();
-					writeToFile.appendMethod(fileName, beginToEnd);
+					//String beginToEnd = listElement1.get(listElement.size() - listWriteHref.size()).getText().toString() + "-"
+					//		+ listElement1.get(listElement.size() - 1).getText().toString();
+					//writeToFile.appendMethod(fileName, beginToEnd);
 
 					writeToFile.appendListMethod(fileName, (ArrayList<String>) listWriteHref);
 				}

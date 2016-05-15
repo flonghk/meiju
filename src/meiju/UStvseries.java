@@ -32,7 +32,9 @@ public class UStvseries {
 		listTVName.add("灵书妙探第八季");
 		listTVName.add("福尔摩斯：基本演绎法第四季");
 		listTVName.add("尖峰时刻第一季");
-		
+		listTVName.add("疑犯追踪第五季");
+		listTVName.add("识骨寻踪第十一季");
+		listTVName.add("犯罪心理：穿越国界第一季");
 		String chromedriverPath = new GetCurrentPath().getCurrentPath();
 		System.setProperty("webdriver.chrome.driver", chromedriverPath + "/\\chromedriver.exe");
 		WebDriver webDriver = new ChromeDriver();

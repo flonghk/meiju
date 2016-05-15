@@ -35,7 +35,7 @@ public class IsTargetPage {
     	Set<String> allWindowsId = webDriver.getWindowHandles();
     	for(String windowId : allWindowsId)
     	{
-    		if(!webDriver.switchTo().window(windowId).getTitle().contains("美剧天堂"))
+    		if(!webDriver.switchTo().window(windowId).getTitle().contains("美剧"))
     		{
     			System.out.println(webDriver.getTitle());
     			webDriver.close();

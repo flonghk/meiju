@@ -57,9 +57,9 @@ public class Searchtvseries {
 			
 			JavascriptExecutor executor = (JavascriptExecutor) webDriver;
 			executor.executeScript("arguments[0].click();", webElementBtn);
-			//System.out.println("已点击");
-			isTargetPage.IsTarget();
-			Thread.sleep(1000);
+			System.out.println(webDriver.getTitle());
+			//isTargetPage.IsTarget();
+			Thread.sleep(5000);
         
 			listHref.add( webDriver.findElement(By.partialLinkText(list)).getAttribute("href"));
 		}
