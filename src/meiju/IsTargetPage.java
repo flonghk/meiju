@@ -33,6 +33,8 @@ public class IsTargetPage {
     {
     	String parentWindowId = webDriver.getWindowHandle();
     	Set<String> allWindowsId = webDriver.getWindowHandles();
+    	if (allWindowsId.size() > 1)
+    	{
     	for(String windowId : allWindowsId)
     	{
     		if(!webDriver.switchTo().window(windowId).getTitle().contains("美剧"))
@@ -45,6 +47,11 @@ public class IsTargetPage {
     		break;
     		}
 
+    	}
+    	}
+    	else
+    	{
+    		System.out.println("当前只有一个页面");
     	}
     	
     	Thread.sleep(1000);
