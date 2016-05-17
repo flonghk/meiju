@@ -11,7 +11,7 @@ public class DownloadTime {
 		Calendar calendar = Calendar.getInstance();//可以对每个时间域单独修改
 
 		int year = calendar.get(Calendar.YEAR); 
-		int month = calendar.get(Calendar.MONTH); 
+		int month = calendar.get(Calendar.MONTH)+1; 
 		int date = calendar.get(Calendar.DATE); 
 		int hour = calendar.get(Calendar.HOUR_OF_DAY); 
 		int minute = calendar.get(Calendar.MINUTE); 
